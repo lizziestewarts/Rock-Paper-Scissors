@@ -3,7 +3,6 @@
 Define the Scope: Decide on the basic features:
 - Two-player mode (against the computer).
 - Input validation (ensure the user only chooses rock, paper, or scissors).
-- Score tracking (best of 3 or 5 rounds).
 
 Outline the Structure: Plan the project structure:
 - A single Python file (main.py).
