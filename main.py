@@ -25,12 +25,20 @@ def get_user_choice():
         print("Invalid input. Try again.")
         return get_user_choice() #recursive call until valid input
 
+def get_computer_choice():
+    """
+    Randomly select the computer's choice from rock, paper, or scissors.
+    Returns:
+        str: the computer's choice
+    """
+    return random.choice(["rock", "paper", "scissors"]) #use random.choice 
 
 def play_game():
     """
     Main game loop
     """
     user_choice = get_user_choice() #get user's choice
+    computer_choice = get_computer_choice() #get computer's choice
 
 if __name__ == "__main__":
     play_game() #run game if this file is executed directly
