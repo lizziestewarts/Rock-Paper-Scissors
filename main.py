@@ -43,7 +43,7 @@ def determine_winner(user_choice, computer_choice):
         str: message indicating result
     """
     if user_choice == computer_choice:
-        return "It's a tie" #both choice are the same, result is tie
+        return "It's a tie!" #both choice are the same, result is tie
     elif (user_choice == "rock" and computer_choice == "scissors") or \
         (user_choice == "scissors" and computer_choice == "paper") or \
         (user_choice == "paper" and computer_choice == "rock"):
