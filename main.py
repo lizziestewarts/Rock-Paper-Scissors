@@ -1,29 +1,24 @@
 """
 Rock-Paper-Scissors Game
 
-This is a simple command-line implementation of the classic Rock-Paper-Scissors game.
+This is a simple tkinter GUI implementation of the classic Rock-Paper-Scissors game.
 Players can compete against the computer by selecting 'rock', 'paper', or 'scissors'.
 The game determines the winner based on standard rules and displays the result.
 
 Author: Elizabeth Stewart
 Date started: 3/9/24
-Last updated: 3/9/24
+Last updated: 6/9/24
 """
 
+import tkinter as tk
+from PIL import Image, ImageTk
 import random  #import random for generating random choices for the computer
 
-def get_user_choice():
-    """
-    Get user's choice of rock, paper, or scissors.
-    Returns:
-        str: user's choice (needs to be 'rock', 'paper', or )
-    """
-    user_input = input("Enter rock, paper, scissors: ").lower() #convert input to lowercase to handle case sensitivity
-    if user_input in ["rock", "paper", "scissors"]:
-        return user_input #valid input
-    else:
-        print("Invalid input. Try again.")
-        return get_user_choice() #recursive call until valid input
+window = tk.Tk()
+window.title("Rock-Paper-Scissors Game")
+window.geometry("600x400")
+window.columnconfigure([0, 1, 2], weight=1)  #make all three columns expand equally
+window.rowconfigure([0, 1], weight=1)  #make the rows expand
 
 def get_computer_choice():
     """
@@ -52,14 +47,32 @@ def determine_winner(user_choice, computer_choice):
         return "Computer wins!" #computer's choice beats user's choice, result is loss
     
 
-def play_game():
+def play(user_choice):
     """
-    Main game loop
+    Handle game play and update GUI
     """
-    user_choice = get_user_choice() #get user's choice
-    computer_choice = get_computer_choice() #get computer's choice
-    print(f"You chose {user_choice}, computer chose {computer_choice}.")
-    print(determine_winner(user_choice, computer_choice)) #print result
+    computer_choice = get_computer_choice()
+    result = determine_winner(user_choice, computer_choice)
+    result_label.config(text=f"You chose {user_choice}, computer chose {computer_choice}. {result}")
 
-if __name__ == "__main__":
-    play_game() #run game if this file is executed directly
+#load images
+rock_img = ImageTk.PhotoImage(Image.open("images/rock.png").resize((100, 100)))
+paper_img = ImageTk.PhotoImage(Image.open("images/paper.png").resize((100, 100)))
+scissors_img = ImageTk.PhotoImage(Image.open("images/scissors.png").resize((100, 100)))
+
+#create buttons for user choices with images
+rock_button = tk.Button(window, image=rock_img, command=lambda: play('rock'))
+paper_button = tk.Button(window, image=paper_img, command=lambda: play('paper'))
+scissors_button = tk.Button(window, image=scissors_img, command=lambda: play('scissors'))
+
+#position buttons on the window
+rock_button.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
+paper_button.grid(row=0, column=1, sticky="nsew", padx=10, pady=10)
+scissors_button.grid(row=0, column=2, sticky="nsew", padx=10, pady=10)
+
+#label to display the result
+result_label = tk.Label(window, text="Make your choice!", font=('Arial', 14))
+result_label.grid(row=1, column=0, columnspan=3, sticky="nsew")
+
+#start GUI loop
+window.mainloop()

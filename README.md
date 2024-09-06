@@ -1,10 +1,11 @@
 # Rock Paper Scissors Game (in python)
 ## Plan
-Define the Scope: Decide on the basic features:
+Decide on the basic features:
 - Two-player mode (against the computer).
 - Input validation (ensure the user only chooses rock, paper, or scissors).
+- Use Tkinter for GUI
 
-Outline the Structure: Plan the project structure:
+Plan the project structure:
 - A single Python file (main.py).
 - A folder for tests (tests/).
 - A README file (README.md) for documentation.
