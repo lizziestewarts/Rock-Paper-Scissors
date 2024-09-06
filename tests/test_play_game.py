@@ -12,7 +12,7 @@ class TestPlayGame(unittest.TestCase):
         #test the play_game function to ensure it correctly identifies the winner
         with patch('builtins.print') as mock_print:
             play_game()
-            mock_print.assert_any_call('User wins!')
+            mock_print.assert_any_call('You win!')
 
 if __name__ == '__main__':
     unittest.main()
