@@ -7,18 +7,12 @@ The game determines the winner based on standard rules and displays the result.
 
 Author: Elizabeth Stewart
 Date started: 3/9/24
-Last updated: 6/9/24
+Last updated: 9/9/24
 """
 
 import tkinter as tk
 from PIL import Image, ImageTk
 import random  #import random for generating random choices for the computer
-
-window = tk.Tk()
-window.title("Rock-Paper-Scissors Game")
-window.geometry("600x400")
-window.columnconfigure([0, 1, 2], weight=1)  #make all three columns expand equally
-window.rowconfigure([0, 1], weight=1)  #make the rows expand
 
 def get_computer_choice():
     """
@@ -55,24 +49,34 @@ def play(user_choice):
     result = determine_winner(user_choice, computer_choice)
     result_label.config(text=f"You chose {user_choice}, computer chose {computer_choice}. {result}")
 
-#load images
-rock_img = ImageTk.PhotoImage(Image.open("images/rock.png").resize((100, 100)))
-paper_img = ImageTk.PhotoImage(Image.open("images/paper.png").resize((100, 100)))
-scissors_img = ImageTk.PhotoImage(Image.open("images/scissors.png").resize((100, 100)))
 
-#create buttons for user choices with images
-rock_button = tk.Button(window, image=rock_img, command=lambda: play('rock'))
-paper_button = tk.Button(window, image=paper_img, command=lambda: play('paper'))
-scissors_button = tk.Button(window, image=scissors_img, command=lambda: play('scissors'))
+#ensures that the GUI is only created when main.py is run directly, not when imported for testing
+if __name__ == "__main__":
+    #initialize the Tkinter window only if this script is run directly
+    window = tk.Tk()
+    window.title("Rock-Paper-Scissors Game")
+    window.geometry("600x400")
+    window.columnconfigure([0, 1, 2], weight=1)  #make all three columns expand equally
+    window.rowconfigure([0, 1], weight=1)  #make the rows expand
 
-#position buttons on the window
-rock_button.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
-paper_button.grid(row=0, column=1, sticky="nsew", padx=10, pady=10)
-scissors_button.grid(row=0, column=2, sticky="nsew", padx=10, pady=10)
+    #load images
+    rock_img = ImageTk.PhotoImage(Image.open("images/rock.png").resize((100, 100)))
+    paper_img = ImageTk.PhotoImage(Image.open("images/paper.png").resize((100, 100)))
+    scissors_img = ImageTk.PhotoImage(Image.open("images/scissors.png").resize((100, 100)))
 
-#label to display the result
-result_label = tk.Label(window, text="Make your choice!", font=('Arial', 14))
-result_label.grid(row=1, column=0, columnspan=3, sticky="nsew")
+    #create buttons for user choices with images
+    rock_button = tk.Button(window, image=rock_img, command=lambda: play('rock'))
+    paper_button = tk.Button(window, image=paper_img, command=lambda: play('paper'))
+    scissors_button = tk.Button(window, image=scissors_img, command=lambda: play('scissors'))
 
-#start GUI loop
-window.mainloop()
+    #position buttons on the window
+    rock_button.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
+    paper_button.grid(row=0, column=1, sticky="nsew", padx=10, pady=10)
+    scissors_button.grid(row=0, column=2, sticky="nsew", padx=10, pady=10)
+
+    #label to display the result
+    result_label = tk.Label(window, text="Make your choice!", font=('Arial', 14))
+    result_label.grid(row=1, column=0, columnspan=3, sticky="nsew")
+
+    #start GUI loop
+    window.mainloop()
