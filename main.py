@@ -41,7 +41,7 @@ def determine_winner(user_choice, computer_choice):
         return "Computer wins!" #computer's choice beats user's choice, result is loss
     
 
-def play(user_choice):
+def play(user_choice, result_label):
     """
     Handle game play and update GUI
     """
@@ -65,9 +65,9 @@ if __name__ == "__main__":
     scissors_img = ImageTk.PhotoImage(Image.open("images/scissors.png").resize((100, 100)))
 
     #create buttons for user choices with images
-    rock_button = tk.Button(window, image=rock_img, command=lambda: play('rock'))
-    paper_button = tk.Button(window, image=paper_img, command=lambda: play('paper'))
-    scissors_button = tk.Button(window, image=scissors_img, command=lambda: play('scissors'))
+    rock_button = tk.Button(window, image=rock_img, command=lambda: play('rock', result_label))
+    paper_button = tk.Button(window, image=paper_img, command=lambda: play('paper', result_label))
+    scissors_button = tk.Button(window, image=scissors_img, command=lambda: play('scissors', result_label))
 
     #position buttons on the window
     rock_button.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)

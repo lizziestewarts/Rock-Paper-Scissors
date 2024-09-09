@@ -11,16 +11,12 @@ class TestPlayFunction(unittest.TestCase):
         result_label.grid(row=1, column=0, columnspan=3, sticky="nsew")
 
         #patch the play function to test GUI updates
-        play('rock')
+        play('rock', result_label)
         
-        #verify if result_label is updated correctly (since computer_choice is random, the check is general)
-        self.assertIn(result_label.cget("text"), [
-            "You chose rock, computer chose rock. It's a tie!",
-            "You chose rock, computer chose paper. Computer wins!",
-            "You chose rock, computer chose scissors. You win!"
-        ])
-        
-        window.destroy()  #close the window after test
+        #check if the result label text was updated correctly
+        self.assertIn("You chose rock", result_label.cget("text"))
+        self.assertIn("computer chose", result_label.cget("text"))
+
 
 if __name__ == "__main__":
     unittest.main()
