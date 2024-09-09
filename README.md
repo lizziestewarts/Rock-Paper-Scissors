@@ -6,7 +6,7 @@ Elizabeth Stewart
 
 
 ## Plan
-Decide on the basic features:
+### Features:
 - **Two-player mode**: (against the computer).
 - **Input validation**: (ensure the user only chooses rock, paper, or scissors).
 - **GUI**: Use Tkinter for the graphical interface
